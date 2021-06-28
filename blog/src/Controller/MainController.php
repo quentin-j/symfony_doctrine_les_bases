@@ -83,4 +83,14 @@ class MainController extends AbstractController
 
         return $this->redirectToRoute('list');
     }
+
+    /**
+     * @Route("/post/{id}", name="read")
+     */
+    public function read(Post $post): Response
+    {
+        return $this->render('main/read.html.twig', [
+            'post' => $post, 
+        ]);
+    }
 }
