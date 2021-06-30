@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=PostRepository::class)
+ * @ORM\Entity(repositoryClass=CommentRepository::class)
  */
-class Post
+class Comment
 {
     /**
      * @ORM\Id
@@ -20,20 +20,15 @@ class Post
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private $username;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
      */
     private $body;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $nbLikes;
-
-    /**
-     * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $publishedAt;
 
@@ -43,28 +38,23 @@ class Post
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $image;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getUsername(): ?string
     {
-        return $this->title;
+        return $this->username;
     }
 
-    public function setTitle(string $title): self
+    public function setUsername(string $username): self
     {
-        $this->title = $title;
+        $this->username = $username;
 
         return $this;
     }
@@ -74,31 +64,19 @@ class Post
         return $this->body;
     }
 
-    public function setBody(?string $body): self
+    public function setBody(string $body): self
     {
         $this->body = $body;
 
         return $this;
     }
 
-    public function getNbLikes(): ?int
-    {
-        return $this->nbLikes;
-    }
-
-    public function setNbLikes(int $nbLikes): self
-    {
-        $this->nbLikes = $nbLikes;
-
-        return $this;
-    }
-
-    public function getPublishedAt(): ?\DateTimeImmutable
+    public function getPublishedAt(): ?\DateTimeInterface
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(?\DateTimeImmutable $publishedAt): self
+    public function setPublishedAt(\DateTimeInterface $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
 
@@ -122,21 +100,9 @@ class Post
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }

@@ -8,12 +8,7 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-{% for post in all_posts %}
-    <div>
-        {{ dump(post) }}
-        {{ post.id }}
-        {{ post.title }}
-        {{ post.updatedAt|date('d/m/Y H:i:s') }}
-    </div>
+{% for key, post in all_posts %}
+    {{ dump(post) }}
 {% endfor %}
 {% endblock %}
