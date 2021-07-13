@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SandBoxController!{% endblock %}
+
+{% block body %}
+{{ dump(author) }}
+<ul>
+    {% for post in author.posts %}
+        <li>
+            <h4>{{ post.title }}</h4>
+            <ul>
+                <li> {{ post.body }}</li>
+            </ul>
+            <p>likes : {{ post.nbLikes }}</p>
+            <p>publier le : {{ post.publishedAt|date('d M Y H:i:s') }}</p>
+            <h4>Commentaires</h4>
+            {% for comment in post.comments %}
+                <h6>{{comment.username}}</h6>
+                <p>{{ comment.body }}</p>
+                 <p>publier le : {{ comment.publishedAt|date('d M Y H:i:s') }}</p>
+            {% endfor %}
+        </li>
+    {% endfor %}
+</ul>
+{{ dump(author) }}
+{% endblock %}
